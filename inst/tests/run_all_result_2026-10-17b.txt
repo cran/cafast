@@ -1,0 +1,121 @@
+=== test_count_core.R
+cases: 529, failures: 0
+COUNT CORE PASS
+
+=== test_nck_faces.R
+flexpos random battery: 300 arrays (mixed levels, half with NAs)
+coverage-convention battery: 100 NA-bearing arrays vs R oracle
+markflex random battery: 120 arrays; identical row order in 120 
+
+ALL NCK FACES TESTS PASS
+
+=== test_maxconstant.R
+trying URL 'https://math.nist.gov/coveringarrays/ipof/cas/t=2/v=4/ca.2.4^20.txt.zip'
+Content type 'application/zip' length 542 bytes
+==================================================
+downloaded 542 bytes
+
+trying URL 'https://math.nist.gov/coveringarrays/ipof/cas/t=3/v=3/ca.3.3^30.txt.zip'
+Content type 'application/zip' length 1326 bytes
+==================================================
+downloaded 1326 bytes
+
+trying URL 'https://math.nist.gov/coveringarrays/ipof/cas/t=2/v=5/ca.2.5^40.txt.zip'
+Content type 'application/zip' length 1482 bytes
+==================================================
+downloaded 1482 bytes
+
+trying URL 'https://math.nist.gov/coveringarrays/ipof/cas/t=3/v=4/ca.3.4^20.txt.zip'
+Content type 'application/zip' length 2048 bytes
+==================================================
+downloaded 2048 bytes
+
+trying URL 'https://math.nist.gov/coveringarrays/ipof/cas/t=4/v=3/ca.4.3^15.txt.zip'
+Content type 'application/zip' length 1891 bytes
+==================================================
+downloaded 1891 bytes
+
+trying URL 'https://math.nist.gov/coveringarrays/ipof/cas/t=3/v=4/ca.3.4^60.txt.zip'
+Content type 'application/zip' length 7560 bytes
+==================================================
+downloaded 7560 bytes
+
+trying URL 'https://math.nist.gov/coveringarrays/ipof/cas/t=2/v=6/ca.2.6^60.txt.zip'
+Content type 'application/zip' length 3252 bytes
+==================================================
+downloaded 3252 bytes
+
+trying URL 'https://math.nist.gov/coveringarrays/ipof/cas/t=4/v=4/ca.4.4^30.txt.zip'
+Content type 'application/zip' length 17331 bytes (16 KB)
+==================================================
+downloaded 16 KB
+
+trying URL 'https://math.nist.gov/coveringarrays/ipof/cas/t=5/v=3/ca.5.3^20.txt.zip'
+Content type 'application/zip' length 9543 bytes
+==================================================
+downloaded 9543 bytes
+
+trying URL 'https://math.nist.gov/coveringarrays/ipof/cas/t=4/v=5/ca.4.5^20.txt.zip'
+Content type 'application/zip' length 26193 bytes (25 KB)
+==================================================
+downloaded 25 KB
+
+nistCA(2,20,4)      37 x 20  hers 2 front (2 total)   0.01s   ours 2 front (2 total)   0.00s   asc TRUE equiv TRUE covers TRUE  OK
+nistCA(3,30,3)     106 x 30  hers 1 front (1 total)   0.02s   ours 1 front (1 total)   0.00s   asc TRUE equiv TRUE covers TRUE  OK
+nistCA(2,40,5)      67 x 40  hers 1 front (1 total)   0.01s   ours 1 front (1 total)   0.00s   asc TRUE equiv TRUE covers TRUE  OK
+nistCA(3,20,4)     215 x 20  hers 2 front (2 total)   0.07s   ours 2 front (2 total)   0.00s   asc TRUE equiv TRUE covers TRUE  OK
+nistCA(4,15,3)     302 x 15  hers 2 front (2 total)   0.13s   ours 2 front (2 total)   0.00s   asc TRUE equiv TRUE covers TRUE  OK
+nistCA(3,60,4)     324 x 60  hers 1 front (1 total)   0.22s   ours 1 front (1 total)   0.00s   asc TRUE equiv TRUE covers TRUE  OK
+nistCA(2,60,6)     104 x 60  hers 1 front (1 total)   0.02s   ours 1 front (1 total)   0.00s   asc TRUE equiv TRUE covers TRUE  OK
+nistCA(4,30,4)    1448 x 30  hers 2 front (2 total)   3.04s   ours 2 front (2 total)   0.03s   asc TRUE equiv TRUE covers TRUE  OK
+nistCA(5,20,3)    1342 x 20  hers 2 front (2 total)   2.54s   ours 2 front (2 total)   0.02s   asc TRUE equiv TRUE covers TRUE  OK
+nistCA(4,20,5)    2892 x 20  hers 3 front (3 total)  15.45s   ours 3 front (3 total)   0.13s   asc TRUE equiv TRUE covers TRUE  OK
+random1             51 x  5  hers 5 front (5 total)   0.00s   ours 5 front (5 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random2             52 x 12  hers 5 front (5 total)   0.00s   ours 5 front (5 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random3             27 x 12  hers 2 front (3 total)   0.00s   ours 2 front (3 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random4             51 x  3  hers 4 front (6 total)   0.01s   ours 4 front (4 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random5             54 x  4  hers 4 front (4 total)   0.00s   ours 4 front (4 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random6             24 x 11  hers 4 front (4 total)   0.00s   ours 4 front (4 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random7             45 x 12  hers 3 front (3 total)   0.00s   ours 3 front (3 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random8             17 x 12  hers 4 front (4 total)   0.00s   ours 4 front (4 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random9             27 x  8  hers 3 front (3 total)   0.00s   ours 3 front (3 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random10            49 x  8  hers 3 front (3 total)   0.00s   ours 3 front (3 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random11            12 x  6  hers 6 front (6 total)   0.00s   ours 6 front (6 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random12            68 x  9  hers 4 front (4 total)   0.00s   ours 4 front (4 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random13            62 x  3  hers 3 front (12 total)   0.01s   ours 3 front (7 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random14            47 x  5  hers 3 front (3 total)   0.00s   ours 3 front (3 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random15            59 x  5  hers 5 front (5 total)   0.00s   ours 5 front (5 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random16            70 x  5  hers 3 front (4 total)   0.00s   ours 3 front (5 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random17            71 x  3  hers 6 front (7 total)   0.02s   ours 6 front (8 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random18            58 x  7  hers 5 front (5 total)   0.00s   ours 5 front (5 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random19            47 x  5  hers 6 front (6 total)   0.00s   ours 6 front (6 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random20            17 x  4  hers 2 front (4 total)   0.00s   ours 2 front (3 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random21            53 x  8  hers 2 front (2 total)   0.00s   ours 2 front (2 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random22            13 x 10  hers 6 front (6 total)   0.00s   ours 6 front (6 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random23            19 x  9  hers 4 front (4 total)   0.00s   ours 4 front (4 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random24            58 x  4  hers 4 front (4 total)   0.00s   ours 4 front (6 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random25            27 x  3  hers 4 front (6 total)   0.00s   ours 4 front (5 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random26            36 x 12  hers 4 front (4 total)   0.00s   ours 4 front (4 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random27            21 x  4  hers 6 front (6 total)   0.00s   ours 6 front (6 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random28            40 x  3  hers 4 front (6 total)   0.00s   ours 4 front (6 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random29            22 x  3  hers 2 front (8 total)   0.00s   ours 2 front (8 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random30            52 x  8  hers 6 front (6 total)   0.00s   ours 6 front (6 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random31            79 x 10  hers 5 front (5 total)   0.00s   ours 5 front (5 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random32            54 x  6  hers 5 front (5 total)   0.00s   ours 5 front (5 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random33            77 x  7  hers 2 front (2 total)   0.00s   ours 2 front (2 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random34            58 x  9  hers 4 front (4 total)   0.00s   ours 4 front (4 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random35            19 x  8  hers 3 front (3 total)   0.00s   ours 3 front (3 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random36            63 x  7  hers 5 front (5 total)   0.00s   ours 5 front (5 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random37            39 x 11  hers 6 front (6 total)   0.00s   ours 6 front (6 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random38            56 x  5  hers 4 front (5 total)   0.00s   ours 4 front (5 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random39            71 x  3  hers 2 front (20 total)   0.01s   ours 2 front (20 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+random40            14 x  4  hers 5 front (6 total)   0.00s   ours 5 front (6 total)   0.00s   asc TRUE equiv TRUE covers NA  OK
+bush64              64 x  5  hers 4 front (4 total)   0.01s   ours 4 front (4 total)   0.00s   asc TRUE equiv TRUE covers TRUE  OK
+cyc19               19 x 19  hers 1 front (1 total)   0.00s   ours 1 front (1 total)   0.00s   asc TRUE equiv TRUE covers TRUE  OK
+bush64: remove=TRUE gives 60 rows (was 64); one_is_enough gives 1 constant rows
+cyc19: remove=TRUE gives 18 rows (was 19); one_is_enough gives 1 constant rows
+Error in maxconstant_c(A, verbose = 2) : 
+  maxconstant_c needs an array without NA cells
+Calls: system.time -> maxconstant_c
+Timing stopped at: 0 0 0.001
+Execution halted

@@ -1,0 +1,32 @@
+Package: cafast
+Type: Package
+Title: Fast Companions to the 'CAs' Package for Covering Arrays
+Version: 0.1.0
+Authors@R: person("Christopher", "Smolen",
+    email = "chrispbsmolen@gmail.com", role = c("aut", "cre"))
+Description: Compiled implementations and generalizations of selected
+    functions of the 'CAs' package by Ulrike Groemping for covering
+    arrays. The package provides a C version of the search for the
+    largest set of rows that can be made constant by permuting symbols,
+    the power construction of Colbourn and Torres-Jimenez (2010)
+    <doi:10.1090/conm/523/10309> for any strength, number of columns and
+    number of levels, a counting kernel that tabulates value tuples for
+    every set of t columns, and fast versions of the flexible-value tools
+    and of the randomized post-optimization of Nayeri, Colbourn and
+    Konjevod (2013) <doi:10.1016/j.ejc.2012.07.017>. Each function was
+    tested against its 'CAs' counterpart, and the remaining differences
+    are documented.
+License: GPL (>= 3)
+URL: https://github.com/chrispbsmolen/ca-tools
+BugReports: https://github.com/chrispbsmolen/ca-tools/issues
+Encoding: UTF-8
+Language: en-US
+Depends: R (>= 4.0)
+Imports: CAs
+Suggests: caverify, lhs
+NeedsCompilation: yes
+Packaged: 2026-10-18 02:52:21 UTC; axviam
+Author: Christopher Smolen [aut, cre]
+Maintainer: Christopher Smolen <chrispbsmolen@gmail.com>
+Repository: CRAN
+Date/Publication: 2026-10-28 12:30:10 UTC
