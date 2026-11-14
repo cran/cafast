@@ -14,7 +14,9 @@ maxconstant_c <- function(D, verbose = 0, remove = FALSE, one_is_enough = FALSE,
     consts <- !is.na(D[, 1]) & rowSums(D == D[, 1], na.rm = TRUE) == k
     nconstant <- sum(consts)
     posconsts <- integer(0)
-    if (nconstant > 0) { posconsts <- which(consts); posconsts <- posconsts[order(D[posconsts, 1])] }
+    if (nconstant > 0) { posconsts <- which(consts); posconsts <- posconsts[order(D[posconsts, 1])]
+        ## a repeated constant row is one constant: count it once, keep the copies as ordinary rows
+        posconsts <- posconsts[!duplicated(D[posconsts, 1])]; nconstant <- length(posconsts) }
     if (nconstant == v) {
         D <- if (remove) D[setdiff(seq_len(N), posconsts), , drop = FALSE] else D[c(posconsts, setdiff(seq_len(N), posconsts)), , drop = FALSE]
         if (verbose %in% c(2, 12)) attr(D, "constant_rows") <- list(design_name = Dnam, row_set_list = posconsts)

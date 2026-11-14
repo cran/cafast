@@ -74,7 +74,7 @@ for (i in 1:20) { nm <- sprintf("random%d", i); A <- cases[[nm]]
 B <- cases[["bush64"]]; clB <- attr(maxconstant_c(B, verbose = 2), "constant_rows")$row_set_list
 nacases[["bush64+NAclique"]] <- blank(B, 0.2, rows = clB, seed = 401)
 nacases[["bush64+NA"]] <- blank(B, 0.03, seed = 402)
-nafails <- 0; nabig <- 0
+nafails <- 0; nabig <- 0; nadup <- 0
 for (nm in names(nacases)) {
     A <- nacases[[nm]]
     th <- system.time(H <- maxconstant(A, verbose = 2))[["elapsed"]]
@@ -88,12 +88,19 @@ for (nm in names(nacases)) {
     ## constant, hers then returns fewer constant rows, ours stops at v
     v <- length(unique(na.omit(as.vector(A))))
     big <- length(attr(H, "constant_rows")$row_set_list) > v
-    ok <- if (big) nconst(C) == v && eqC else same_n && nconst(C) >= 1 && eqC
+    ## known difference (cafast 0.1.1): hers can report copies of one constant
+    ## row as several constant rows; ours counts a repeated constant row once,
+    ## so it must give at least as many distinct constant rows as hers
+    rsH <- attr(H, "constant_rows")$row_set_list
+    dupH <- !big && length(rsH) > 1 && all(!is.na(A[rsH, 1])) &&
+        all(rowSums(A[rsH, , drop = FALSE] == A[rsH, 1], na.rm = TRUE) == ncol(A)) && anyDuplicated(A[rsH, 1]) > 0
+    ok <- if (big) nconst(C) == v && eqC else if (dupH) nconst(C) >= length(unique(A[rsH, 1])) && eqC else same_n && nconst(C) >= 1 && eqC
     if (big) nabig <- nabig + 1
+    if (dupH) nadup <- nadup + 1
     if (!ok) nafails <- nafails + 1
     cat(sprintf("%-18s %3d x %2d  NA %3d (clique rows %d)  hers %d front  ours %d front  equiv ours %s hers %s  %s\n",
         nm, nrow(A), ncol(A), sum(is.na(A)), sum(is.na(A[attr(C, "constant_rows")$row_set_list, ])),
-        nconst(H), nconst(C), eqC, eqH, if (!ok) "MISMATCH" else if (big) "OK (her clique > v)" else "OK"))
+        nconst(H), nconst(C), eqC, eqH, if (!ok) "MISMATCH" else if (big) "OK (her clique > v)" else if (dupH) "OK (her rows repeat a constant)" else "OK"))
 }
 fails <- fails + nafails
 ## documented differences, not counted: hers fails, ours gives a usable array
@@ -102,6 +109,6 @@ r1 <- tryCatch({ maxconstant(D1); "no error" }, error = function(e) conditionMes
 cat(sprintf("single-row clique with NA: hers %s; ours %d constant row\n", r1, nconst(maxconstant_c(D1))))
 D2 <- rbind(c(0, NA), c(1, NA), c(NA, 0), c(NA, 1), c(0, 1), c(1, 0))   # NA-compatible clique of 4 > v = 2
 cat(sprintf("clique larger than v: hers %d constant rows, ours %d\n", nconst(maxconstant(D2)), nconst(maxconstant_c(D2))))
-cat(sprintf("\nNA cases %d, NA mismatches %d, cases where her clique exceeds v %d\n", length(nacases), nafails, nabig))
+cat(sprintf("\nNA cases %d, NA mismatches %d, cases where her clique exceeds v %d, cases where her rows repeat a constant %d\n", length(nacases), nafails, nabig, nadup))
 cat(sprintf("\ncases %d, mismatches %d, total time hers %.1f s, ours %.1f s\n", length(cases) + length(nacases), fails, tot_h, tot_c))
 cat("MAXCONSTANT TEST DONE\n")

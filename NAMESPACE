@@ -1,2 +1,2 @@
 useDynLib(cafast, .registration = TRUE)
-export(maxconstant_c, powerCT_any, power_plan, power_build, count_core, postopNCK_c, flexpos_c, markflex_c)
+export(maxconstant_c, powerCT_any, power_plan, power_build, count_core, postopNCK_c, flexpos_c, markflex_c, CA_to_PCA_c)

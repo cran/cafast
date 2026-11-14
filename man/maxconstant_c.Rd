@@ -61,9 +61,14 @@ maxconstant_c(D, verbose = 0, remove = FALSE, one_is_enough = FALSE,
   several largest cliques exist, \code{CAs::maxconstant} takes the last
   one returned by \code{igraph::largest_cliques} and this function
   takes the first one found in row order. The number of constant rows
-  is the same. The arrays then differ by a row order and a symbol
-  permutation, and on arrays with duplicated rows the number of rows
-  outside the clique that happen to be constant as well can differ.
+  is the same on arrays without duplicated rows. The arrays then differ
+  by a row order and a symbol permutation. Constant rows already present
+  are taken once per symbol: a repeated constant row stays in the array
+  as an ordinary row and is never counted or reported as a constant row
+  (with \code{remove = TRUE} it is not removed). \code{CAs::maxconstant}
+  assumes there are no duplicated rows unless \code{dupcheck = TRUE}, and
+  on an array with a repeated constant row it can report the copies as
+  several constant rows.
   The levels are taken from the whole array, whereas
   \code{CAs::maxconstant} takes them from the first column and stops
   unless every column has the same number of levels.

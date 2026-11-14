@@ -33,6 +33,17 @@ check(nconst(M) == 2 && identical(attr(M, "constant_rows")$row_set_list, c(11L, 
       "maxconstant_c plan")
 check(nrow(maxconstant_c(plan, remove = TRUE)) == 12, "maxconstant_c remove")
 check(nconst(maxconstant_c(plan[-13, ], one_is_enough = TRUE)) == 1, "maxconstant_c one_is_enough")
+## duplicated constant rows count once and stay in the array as ordinary rows
+## (A: v = 2, the all-zero row twice; B: v = 3, the all-zero row twice and a
+## largest clique of 2 that the duplicate pair would otherwise imitate)
+A <- rbind(c(0,0,0), c(0,1,1), c(1,0,1), c(1,1,0), c(0,0,0))
+B <- rbind(c(0,0,0), c(0,0,0), c(0,1,2), c(1,2,0), c(2,1,1))
+MA <- maxconstant_c(A, verbose = 2); MB <- maxconstant_c(B, verbose = 2)
+check(identical(attr(MA, "constant_rows")$row_set_list, 1L) && nconst(MA) == 1 && nrow(MA) == 5,
+      "maxconstant_c duplicated constant row, v = 2")
+check(identical(attr(MB, "constant_rows")$row_set_list, c(1L, 5L)) && nconst(MB) == 2 && nrow(MB) == 5,
+      "maxconstant_c duplicated constant rows, v = 3")
+check(nrow(maxconstant_c(B, remove = TRUE)) == 3, "maxconstant_c remove keeps the duplicate")
 ## OA(64, 4, 4, 3) with NA cells, one of them in a clique row
 D <- as.matrix(expand.grid(0:3, 0:3, 0:3))
 D <- unname(cbind(D, (D[, 1] + D[, 2] + D[, 3]) %% 4))
@@ -79,4 +90,27 @@ if (hasCAs) {
     check(identical(dim(B), c(12L, 100L)) &&
           sum(count_core(B, 2, vs = rep(2, 100), rowmult = FALSE)$missing) == 0, "power_build")
 }
+## CA_to_PCA_c: the result is a PCA in the sense of CAs::is.PCA, still covers, and is at least as wide as CAs::CA_to_PCA
+if (hasCAs) {
+suppressMessages(library(CAs))
+for (kv in list(c(10, 3), c(20, 4), c(12, 5))) {
+    D <- unclass(CAs::bestCA(2, kv[1], kv[2])); D <- D - min(D)
+    P <- CA_to_PCA_c(D); st <- attr(P, "PCAstatus")
+    stopifnot(is.list(st), st$k1 + st$k2 == ncol(D), isTRUE(attr(P, "PCA_exact")))
+    stopifnot(isTRUE(as.logical(CAs::is.PCA(P))), attr(CAs::is.PCA(P), "PCAstatus")$k1 == st$k1)
+    stopifnot(all(CAs::coverage(P, 2)[c("total", "min")] == 1))
+    old <- suppressMessages(attr(CAs::CA_to_PCA(D), "PCAstatus"))
+    if (is.list(old)) stopifnot(st$k1 >= old$k1)
+    ## brute force over all sets of v rows agrees on k1
+    v <- kv[2]; if (choose(nrow(D), v) <= 20000) {
+        b <- max(apply(utils::combn(nrow(D), v), 2, function(r) sum(apply(D[r, , drop = FALSE], 2, function(x) length(unique(x)) == v))))
+        stopifnot(st$k1 == b)
+    }
+}
+## the product of two results is a covering array of N + M - v rows
+P1 <- CA_to_PCA_c(unclass(CAs::bestCA(2, 10, 3))); P2 <- CA_to_PCA_c(unclass(CAs::bestCA(2, 7, 3)))
+Q <- CAs::productPCA(P1, P2)
+check(nrow(Q) == nrow(P1) + nrow(P2) - 3 && all(CAs::coverage(Q, 2)[c("total", "min")] == 1), "CA_to_PCA_c product")
+}
+
 cat("cafast tests passed\n")

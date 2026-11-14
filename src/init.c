@@ -5,11 +5,13 @@ SEXP C_maxclique_disjoint(SEXP, SEXP, SEXP, SEXP, SEXP);
 SEXP C_count_core(SEXP, SEXP, SEXP, SEXP);
 SEXP C_flexpos(SEXP, SEXP, SEXP, SEXP);
 SEXP C_markflex_pin(SEXP, SEXP, SEXP);
+SEXP C_pca_rows(SEXP, SEXP, SEXP);
 static const R_CallMethodDef callMethods[] = {
     {"C_maxclique_disjoint", (DL_FUNC) &C_maxclique_disjoint, 5},
     {"C_count_core", (DL_FUNC) &C_count_core, 4},
     {"C_flexpos", (DL_FUNC) &C_flexpos, 4},
     {"C_markflex_pin", (DL_FUNC) &C_markflex_pin, 3},
+    {"C_pca_rows", (DL_FUNC) &C_pca_rows, 3},
     {NULL, NULL, 0}
 };
 void R_init_cafast(DllInfo *dll) {
